@@ -124,8 +124,6 @@ namespace DevIO.App.Controllers
             return PartialView("_DetalhesEndereco", fornecedor);
         }
 
-
-
         public async Task<IActionResult> AtualizarEndereco(Guid id)
         {
             var fornecedor = await ObterFornecedorEndereco(id);
@@ -145,10 +143,12 @@ namespace DevIO.App.Controllers
             if (!ModelState.IsValid)
                 return PartialView("_AtualizarEndereco", fornecedorViewModel);
 
-            await _enderecoRepository.Atualizar(_mapper.Map<Endereco>(fornecedorViewModel.Endereco));
+            await _enderecoRepository.Atualizar(_mapper.Map<Endereco>(fornecedorViewModel.Endereco));            
 
-            var url = Url.Action("ObterEndereco", "Fornecedores", new { id = fornecedorViewModel.Endereco.FornecedorId });
-            return Json(new { succcess = true, url });
+            var url = Url.Action("ObterEndereco", "Fornecedores", new { id = fornecedorViewModel.Endereco.FornecedorId });            
+
+            return Json(new { success = true, url });  
+
         }
 
 
