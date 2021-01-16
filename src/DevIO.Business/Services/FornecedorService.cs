@@ -50,7 +50,8 @@ namespace DevIO.Business.Services
 
         public async Task AtualizarEndereco(Endereco endereco)
         {
-            if (!ExecutarValidacao(new EnderecoValidation(), endereco)) ;
+            if (!ExecutarValidacao(new EnderecoValidation(), endereco)) return;
+            await _enderecoRepository.Atualizar(endereco);
         }
 
         public async Task Remover(Guid id)
